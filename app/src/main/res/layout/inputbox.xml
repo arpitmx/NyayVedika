@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/segment_parent"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+    android:background="@color/white"
+
+    >
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#1DE3E1E1"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    android:padding="8dp"
+
+    >
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_voice"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:src="@drawable/voice_cricle"
+        android:scaleX="1.4"
+        android:scaleY="1.4"
+        android:tint="#6C6C6C"
+
+        />
+
+            <EditText
+                android:id="@+id/editbox_message"
+                style="@style/body_regular"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:hint="Message"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/black"
+                android:background="@drawable/input_box_bg"
+                android:textSize="16dp"
+                android:textColorHint="@color/black_overlay"
+
+                 />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_send"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/arrow_circle_right"
+                android:scaleX="1.8"
+                android:scaleY="1.8"
+                android:tint="@color/account"
+                />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+

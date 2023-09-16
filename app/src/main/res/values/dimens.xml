@@ -16,4 +16,6 @@
     <dimen name="margin_top">5dp</dimen>
     <dimen name="margin_top_30dp">30dp</dimen>
     <dimen name="padding_bottom_offset">4dp</dimen>
+
+    <dimen name="margin_start_80">80dp</dimen>
 </resources>

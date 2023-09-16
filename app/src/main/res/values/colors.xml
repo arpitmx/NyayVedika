@@ -58,5 +58,6 @@
 
     <color name="colorPrimary">#1E71FF</color>
     <color name="colorSecondary">@color/better_white</color>
+    <color name="user_msg_bg">#FFFAFA</color>
 
 </resources>

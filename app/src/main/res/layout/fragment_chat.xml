@@ -20,6 +20,7 @@
 
         />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cover"
         android:layout_width="match_parent"
@@ -76,7 +77,28 @@
             app:layout_constraintTop_toBottomOf="@+id/lottie_progress_include"
             app:layout_constraintVertical_bias="0.154" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_scrolldown"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@id/input_box"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="5dp"
+        android:background="@drawable/scroll_down_bg"
+        android:src="@drawable/baseline_keyboard_arrow_down_24"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_recyclerview"
@@ -84,7 +106,12 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/input_box"
         android:layout_below="@+id/actionbar"
+        android:layoutAnimation="@anim/layout_animation_fadein"
         android:visibility="gone"
+        android:scrollbars="vertical"
+        android:scrollbarSize="3dp"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarThumbVertical="@color/secondaryBlue"
         />
 
     <include

@@ -12,6 +12,10 @@ android {
     namespace 'com.ncs.nyayvedika'
     compileSdk 33
 
+    configurations.all {
+        exclude group: 'org.jetbrains', module: 'annotations-java5'
+    }
+
     defaultConfig {
         applicationId "com.ncs.nyayvedika"
         minSdk 24
@@ -71,6 +75,22 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     kapt "com.google.dagger:hilt-android-compiler:2.44.2"
+
+
+
+    //MarkWon Markdown
+    final def markwon_version = '4.6.2'
+
+    implementation"io.noties.markwon:ext-tables:$markwon_version"
+    implementation"io.noties.markwon:core:$markwon_version"
+    implementation"io.noties.markwon:editor:$markwon_version"
+    implementation"io.noties.markwon:html:$markwon_version"
+    implementation"io.noties.markwon:image:$markwon_version"
+    implementation"io.noties.markwon:image-glide:$markwon_version"
+    implementation"io.noties.markwon:syntax-highlight:$markwon_version"
+    implementation"io.noties.markwon:ext-tasklist:$markwon_version"
+    implementation"io.noties.markwon:ext-strikethrough:$markwon_version"
+
 
 
     //Timber

@@ -1,6 +1,5 @@
 package com.ncs.o2.Domain.Models
 
-import com.google.firebase.firestore.Exclude
 import com.ncs.o2.Domain.Utility.Later
 
 /*
@@ -21,6 +20,8 @@ Tasks FUTURE ADDITION :
 
 */
 @Later("Add name")
-data class RecieveMessage (
-        val message : String
+data class Message (
+        val message : String,
+        var msgType : Int
         )
+

@@ -3,6 +3,9 @@ package com.ncs.nyayvedika.UI.Chat.Adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.ncs.nyayvedika.databinding.BotMessageItemBinding
+import com.ncs.o2.Domain.Models.RecieveMessage
 
 /*
 File : ChatAdapter.kt -> com.ncs.nyayvedika.UI.Chat.Adapters
@@ -24,27 +27,22 @@ Tasks FUTURE ADDITION :
 
 
 
-class ChatAdapter constructor() : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
+class ChatAdapter constructor(val messageList: ArrayList<RecieveMessage>) : Adapter<ChatAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            TagItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            BotMessageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-
-        with(holder.binding.tag) {
-            this.text = tagItem.tagText
-            this.setBackgroundColor(Color.parseColor(tagItem.bgColor))
-            this.setTextColor(Color.parseColor(tagItem.textColor))
-        }
+        val msg = messageList.get(position).message
+        holder.binding.tvMessage.text = msg
     }
 
     override fun getItemCount(): Int {
-        return tagList.size
+        return messageList.size
     }
 
-    inner class ViewHolder(val binding: TagItemBinding) :
+    inner class ViewHolder(val binding: BotMessageItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 }

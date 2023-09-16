@@ -22,10 +22,5 @@ Tasks FUTURE ADDITION :
 */
 @Later("Add name")
 data class RecieveMessage (
-        val firebaseID : String ,
-        val profileDPUrl : String = "",
-        val username : String="",
-        val post: String= "",
-        val profileIDUrl : String="",
-        @Exclude var isChecked : Boolean = false,
+        val message : String
         )

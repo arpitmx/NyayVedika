@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="2dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="10dp"
     android:background="@color/white"
     android:orientation="vertical"
     android:weightSum="10">
@@ -22,7 +22,7 @@
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/bot_dp"
+            android:id="@+id/img_dp"
             android:layout_width="30dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
@@ -37,7 +37,7 @@
             app:layout_constraintVertical_bias="0.207" />
 
         <TextView
-            android:id="@+id/bot_title"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -61,23 +61,19 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/task_title"
+        android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/sfregular"
         android:ellipsize="end"
         android:text="@string/test_string"
         android:textColor="@color/pureblack"
         android:textSize="15dp"
+
+        android:textAlignment="textStart"
         android:layout_marginStart="52dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/difficulty"
-        app:layout_constraintTop_toBottomOf="@+id/difficulty"
-        app:layout_constraintVertical_bias="0.545" />
+        android:layout_marginEnd="30dp"
+        />
 
 
 

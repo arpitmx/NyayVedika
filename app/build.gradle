@@ -77,6 +77,9 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.44.2"
 
 
+    //PDF converter
+    implementation 'com.github.Gkemon:Android-XML-to-PDF-Generator:2.6.8'
+
 
     //MarkWon Markdown
     final def markwon_version = '4.6.2'

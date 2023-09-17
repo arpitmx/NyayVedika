@@ -2,12 +2,15 @@ package com.ncs.nyayvedika.UI.Chat.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.messaging.Constants.MessageTypes
 import com.ncs.nyayvedika.databinding.BotMessageItemBinding
 import com.ncs.nyayvedika.databinding.UserMessageItemBinding
 import com.ncs.o2.Domain.Models.Message
+import com.ncs.o2.Domain.Models.User
 import io.noties.markwon.Markwon
 
 /*
@@ -55,7 +58,7 @@ Tasks FUTURE ADDITION :
 //}
 
 
-class ChatAdapter(var msgList: MutableList<Message>, val context : Context, val markwon: Markwon) :
+class ChatAdapter(var msgList: MutableList<Message>, val context : Context, val markwon: Markwon, private val onLongClickCallback: OnLongClickCallback) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface onMessageClick {
@@ -79,6 +82,12 @@ class ChatAdapter(var msgList: MutableList<Message>, val context : Context, val 
                 val msg = msgList.get(position).message
                 //binding.tvMessage.setText(msg)
                 markwon.setMarkdown(binding.tvMessage, msg)
+
+                binding.tvMessage.setOnLongClickListener{
+                    val msgObj = Message(msg, MESSAGE_TYPE_BOT)
+                    onLongClickCallback.onLongClick(msgObj)
+                    true
+                }
             }
         }
 
@@ -127,6 +136,12 @@ class ChatAdapter(var msgList: MutableList<Message>, val context : Context, val 
         msgList.add(msg)
         notifyDataSetChanged()
     }
+
+
+    interface OnLongClickCallback{
+        fun onLongClick(msg: Message)
+    }
+
 
 //    override fun onClicking(position: Int) {
 //        Toast.makeText(context, "app from list is clicked", Toast.LENGTH_SHORT).show()

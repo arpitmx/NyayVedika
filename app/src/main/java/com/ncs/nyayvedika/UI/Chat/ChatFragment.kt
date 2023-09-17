@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ncs.nyayvedika.R
 import com.ncs.nyayvedika.UI.Chat.Adapters.ChatAdapter
+import com.ncs.nyayvedika.UI.Chat.BottomSheets.OptionsBottomSheet
 import com.ncs.nyayvedika.databinding.FragmentChatBinding
 import com.ncs.o2.Domain.Models.Message
 import com.ncs.o2.Domain.Utility.ExtensionsUtil.animFadeOut
@@ -43,7 +44,7 @@ import org.yaml.snakeyaml.error.Mark
 
 
 @AndroidEntryPoint
-class ChatFragment : Fragment() {
+class ChatFragment : Fragment(), ChatAdapter.OnLongClickCallback {
 
     private lateinit var viewModel: ChatViewModel
     private lateinit var binding : FragmentChatBinding
@@ -124,10 +125,6 @@ class ChatFragment : Fragment() {
         val msgList : ArrayList<Message> = arrayListOf(Message("Hello how can I help you ?",0),
         Message(Faker().shakespeare().asYouLikeItQuote(),0),
             Message("Fuck you bitch?!",1),
-            Message("```kotlin\n" +
-                    "fun main() {\n" +
-                    "    println(\"Hello, World!\")\n" +
-                    "}",0),
             Message("### What is the punishment for bribery under IPC?\n" +
                     "\n" +
                     "In India, the punishment for bribery is primarily governed by the Prevention of Corruption Act, 1988, rather than the Indian Penal Code (IPC). The Indian Penal Code deals with various offenses, but bribery is more specifically addressed under the Prevention of Corruption Act. Here is a general overview of the punishment for bribery under this act:\n" +
@@ -155,13 +152,13 @@ class ChatFragment : Fragment() {
         )
 
 
-        adapter = ChatAdapter(msgList,requireContext(),markwon)
+        adapter = ChatAdapter(msgList,requireContext(),markwon,this)
         chatRecyclerView.adapter = adapter
         Handler(Looper.getMainLooper()).postDelayed({
             binding.chatRecyclerview.visible()
             binding.chatRecyclerview.animFadein(requireContext(),500)
             binding.cover.gone()
-        },6000)
+        },2000)
 
 
         var checkScrollingUp = false
@@ -196,8 +193,6 @@ class ChatFragment : Fragment() {
         binding.btnScrolldown.setOnClickThrottleBounceListener (600){
                 chatRecyclerView.smoothScrollToPosition(adapter.msgList.size-1)
         }
-
-
 
     }
 
@@ -295,8 +290,6 @@ class ChatFragment : Fragment() {
             },1000)
         },500)
 
-
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -304,6 +297,11 @@ class ChatFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
     }
 
+    override fun onLongClick(msg: Message) {
+        val optionBottomSheet :OptionsBottomSheet = OptionsBottomSheet(msg)
+        optionBottomSheet.show(childFragmentManager,"option bottomsheet")
+
+    }
 
 
 }

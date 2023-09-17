@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="1000px"
+    android:layout_height="1414.4px"
+    android:orientation="vertical"
+    android:id="@+id/pdfLinLayout"
+    >
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/btn_sendPdf"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5px"
+        android:layout_marginTop="30px"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/curves"
+            android:layout_marginStart="10dp"
+            app:tint="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20px"
+            android:text="Nyay Vedika"
+            android:textSize="50px"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sfsemibold"
+            android:gravity="center_vertical"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/text_message"
+            android:layout_width="1000px"
+            android:layout_height="match_parent"
+            android:text="@string/sample"
+            android:textSize="45px"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sfregular"
+            android:padding="40px"
+            android:layout_gravity="center"
+        android:gravity="top"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>

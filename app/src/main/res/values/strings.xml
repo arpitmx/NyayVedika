@@ -4,4 +4,5 @@
     <string name="test_string">We can also handle both the EditTexts separately. But in this case, to reduce the lines of code, the callback listener TextWatcher is implemented, and the callback listener object is passed to the addTextChangedListener method for each of the edit text.
 Invoke the following code inside the MainActivity.java file comments are added for better understanding.</string>
     <string name="vedika">Vedika</string>
+    <string name="sample">Please note that these are general provisions, and the specific punishment for bribery may vary based on the nature of the offense and other factors. Additionally, the legal system can evolve, so it\'s advisable to consult the latest legal sources or seek legal counsel for the most up-to-date information on bribery punishments in India.</string>
 </resources>

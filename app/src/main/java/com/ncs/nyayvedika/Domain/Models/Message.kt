@@ -19,9 +19,8 @@ Tasks FEATURE MUST HAVE :
 Tasks FUTURE ADDITION :
 
 */
-@Later("Add name")
-data class Message (
+open class Message (
         val message : String,
-        var msgType : Int
+        open var msgType : Int
         )
 

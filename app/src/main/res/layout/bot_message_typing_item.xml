@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/ripple"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:orientation="horizontal"
+        android:layout_marginEnd="10dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_dp"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/sfbold"
+            android:gravity="center"
+            android:src="@color/colorPrimary"
+            android:textColor="@color/darkTheme_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.207" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/difficulty"
+            android:fontFamily="@font/sfsemibold"
+            android:gravity="center"
+            android:paddingTop="1dp"
+            android:text="@string/vedika"
+            android:textColor="#515151"
+            android:textSize="16dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/verified"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:paddingTop="2dp"
+            android:src="@drawable/verify"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.207"
+            app:tint="@color/colorPrimary" />
+
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/curvedbggraybg_mssg"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/typing"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:scaleX="1.8"
+            android:scaleY="1.8"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_speed="2"
+            app:lottie_rawRes="@raw/typing" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@color/border_grey"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />-->
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+

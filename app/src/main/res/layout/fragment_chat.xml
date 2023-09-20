@@ -117,7 +117,7 @@
     <include
         android:id="@+id/input_box"
         layout="@layout/inputbox"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/input_box_size"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         />

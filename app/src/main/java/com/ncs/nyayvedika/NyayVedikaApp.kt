@@ -2,6 +2,7 @@ package com.ncs.nyayvedika
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
 /*
 File : Application.kt -> com.ncs.nyayvedika
@@ -35,4 +36,13 @@ Creation : 9:22 pm on 15/09/23
 
 @HiltAndroidApp
 class NyayVedikaApp : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG)  {
+            Timber.plant(Timber.DebugTree())
+        }
+    }
+
 }

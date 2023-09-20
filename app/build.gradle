@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace 'com.ncs.nyayvedika'
-    compileSdk 33
+    compileSdk 34
 
     configurations.all {
         exclude group: 'org.jetbrains', module: 'annotations-java5'
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId "com.ncs.nyayvedika"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -94,14 +94,15 @@ dependencies {
     implementation"io.noties.markwon:ext-tasklist:$markwon_version"
     implementation"io.noties.markwon:ext-strikethrough:$markwon_version"
 
-
+    //PdftoText convertor
+    implementation 'com.itextpdf:itextg:5.5.10'
 
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
 
     //Bottom Navigation
-    def navigation_version = "2.6.0"
+    def navigation_version = "2.7.2"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
@@ -146,6 +147,9 @@ dependencies {
     //ViewPager 2
     implementation 'androidx.viewpager2:viewpager2:1.1.0-beta02'
 
+    //Pdfium
+    implementation 'com.github.barteksc:pdfium-android:1.9.0'
+
 
     //Flexbox
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
@@ -156,11 +160,17 @@ dependencies {
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
+    //Image corousel
+    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
 
+    // coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

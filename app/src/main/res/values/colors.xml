@@ -59,5 +59,7 @@
     <color name="colorPrimary">#1E71FF</color>
     <color name="colorSecondary">@color/better_white</color>
     <color name="user_msg_bg">#FFFAFA</color>
+    <color name="bot_bubble_bg">#FFF8E1</color>
+    <color name="black200">#4A4A4A</color>
 
 </resources>

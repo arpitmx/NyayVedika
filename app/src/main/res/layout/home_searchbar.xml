@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    android:gravity="center_vertical"
+    android:layout_height="80dp">
+
+
+    <EditText
+        android:id="@+id/editbox_message"
+        style="@style/body_regular"
+        android:layout_width="0dp"
+        android:layout_weight="9"
+        android:layout_height="50dp"
+        android:hint="@string/search_related_to_law"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:layout_marginStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/black"
+        android:background="@drawable/search_box_bg"
+        android:textSize="16dp"
+        android:drawableEnd="@drawable/ic_searchico"
+        android:drawableTint="@color/account"
+        android:textColorHint="@color/black_overlay"
+
+
+        />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_search"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/curved_solid_bg_white"
+        android:layout_weight="1"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/baseline_keyboard_voice_24"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:tint="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

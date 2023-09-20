@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Home.HomeFragment"
+    android:clipToPadding="false"
+    android:nestedScrollingEnabled="false"
+    android:paddingBottom="80dp"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:elevation="1dp"
+            android:src="@drawable/box_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/vedika_title"
+                style="@style/body_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:text="Profile ✦"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/sampledp"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="5dp" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:elevation="5dp"
+                android:fontFamily="@font/sfmedium"
+                android:gravity="bottom|center"
+                android:text="Alok Ranjan"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:elevation="5dp"
+                android:fontFamily="@font/sfmedium"
+                android:gravity="top|center"
+                android:text="sudoarmax@gmail.com"
+                android:textColor="@color/black200"
+                android:textSize="16dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/solid_bg_white_border"
+                android:elevation="5dp"
+                android:fontFamily="@font/sfmedium"
+                android:gravity="center"
+                android:text="Select Language - English"
+                android:textColor="@color/black200"
+                android:textSize="18dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/reset"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/solid_bg_white_border"
+                android:elevation="5dp"
+                android:fontFamily="@font/sfmedium"
+                android:gravity="center"
+                android:text="Reset profile"
+                android:textColor="@color/black200"
+                android:textSize="18dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/solid_bg_white_border"
+                android:elevation="5dp"
+                android:fontFamily="@font/sfmedium"
+                android:gravity="center"
+                android:text="Log out"
+                android:textColor="@color/black200"
+                android:textSize="18dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:elevation="5dp"
+                android:fontFamily="@font/sfmedium"
+                android:gravity="center"
+                android:text="NyayVedika v1.2 \nby Advocode👩🏻‍⚖️🧑🏻‍⚖️️"
+                android:textColor="@color/black200"
+                android:textSize="12dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </FrameLayout>
+
+</ScrollView>
+

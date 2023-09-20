@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/segment_parent"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/input_box_size"
             android:orientation="vertical"
     android:background="@color/white"
-
     >
 
 
@@ -20,7 +19,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:weightSum="10"
     android:padding="8dp"
@@ -36,16 +35,33 @@
         android:src="@drawable/voice_cricle"
         android:scaleX="1.4"
         android:scaleY="1.4"
-        android:tint="#6C6C6C"
+        android:tint="@color/colorPrimary"
 
         />
 
-            <EditText
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_file"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:src="@drawable/baseline_picture_as_pdf_24"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:tint="@color/colorPrimary"
+
+            />
+
+
+
+
+        <EditText
                 android:id="@+id/editbox_message"
                 style="@style/body_regular"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
+                android:layout_weight="7"
                 android:hint="Message"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
@@ -57,7 +73,9 @@
 
                  />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_send"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

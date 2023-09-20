@@ -25,7 +25,7 @@
         android:id="@+id/cover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/input_box"
+        android:layout_above="@+id/input_box_container"
         android:layout_below="@+id/actionbar"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
@@ -85,7 +85,7 @@
         android:id="@+id/btn_scrolldown"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_above="@id/input_box"
+        android:layout_above="@+id/input_box_container"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="10dp"
@@ -104,7 +104,7 @@
         android:id="@+id/chat_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/input_box"
+        android:layout_above="@+id/input_box_container"
         android:layout_below="@+id/actionbar"
         android:layoutAnimation="@anim/layout_animation_fadein"
         android:visibility="gone"
@@ -114,13 +114,36 @@
         android:scrollbarThumbVertical="@color/secondaryBlue"
         />
 
-    <include
-        android:id="@+id/input_box"
-        layout="@layout/inputbox"
-        android:layout_height="@dimen/input_box_size"
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/input_box_container"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        />
+        >
+
+        <include
+            android:id="@+id/suggestion_box_include"
+            layout="@layout/suggestion_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
+
+        <include
+            android:id="@+id/input_box"
+            layout="@layout/inputbox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_box_size"
+            android:layout_marginStart="0dp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 
 </RelativeLayout>

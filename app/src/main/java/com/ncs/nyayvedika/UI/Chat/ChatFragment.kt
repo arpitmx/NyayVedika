@@ -139,8 +139,6 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
         setUpInputBox()
         setUpRecyclerView()
         setLivedata()
-
-
     }
 
     interface ViewInitCallback{
@@ -243,8 +241,6 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
         })
 
         binding.inputBox.btnVoice.setOnClickSingleTimeBounceListener {
-
-
 
         }
 

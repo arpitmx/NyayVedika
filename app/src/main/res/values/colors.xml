@@ -61,5 +61,7 @@
     <color name="user_msg_bg">#FFFAFA</color>
     <color name="bot_bubble_bg">#FFF8E1</color>
     <color name="black200">#4A4A4A</color>
+    <color name="_7c1e71ff">#7C1E71FF</color>
+    <color name="chat_progress_bg">#8A1E71FF</color>
 
 </resources>

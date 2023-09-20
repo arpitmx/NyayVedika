@@ -35,6 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseUser
 import com.ncs.nyayvedika.Constants.ApiEndpoints
+import com.ncs.nyayvedika.Constants.TestingConfig
 import com.ncs.nyayvedika.Domain.Api.ChatApiService
 import com.ncs.nyayvedika.Domain.Api.RetrofitClient
 import com.ncs.nyayvedika.Domain.Models.Answer
@@ -89,7 +90,6 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
         GlobalUtils.EasyElements(requireContext())
     }
 
-    lateinit var answerLiveData : LiveData<ServerResult<Answer?>>
 
 
     override fun onCreateView(
@@ -103,8 +103,7 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpViews()
-
+        setUpViews(testing=TestingConfig.isTesting)
     }
 
     val textWatcher : TextWatcher = object : TextWatcher{
@@ -128,17 +127,26 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
         override fun afterTextChanged(input: Editable?) {
 
         }
-
     }
 
-    private fun setUpViews() {
-        initViews()
-        setUpMarkdown()
-        setUpViewClicks()
-        startOpeningAnim()
-        setUpInputBox()
-        setUpRecyclerView()
-        setLivedata()
+
+    private fun setUpViews(testing:Boolean = false) {
+
+        if (!testing){
+            initViews()
+            setUpViewClicks()
+            startOpeningAnim()
+            setUpRecyclerView()
+            setLivedata()
+        }
+        else {
+            initViews()
+            setUpViewClicks()
+            setUpRecyclerView(0L)
+            setLivedata()
+
+            binding.actionbar.titleTv.visible()
+        }
     }
 
     interface ViewInitCallback{
@@ -150,9 +158,11 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
         binding.actionbar.typing.gone()
         binding.inputBox.btnSend.isEnabled = false
         binding.inputBox.btnSend.isClickable = false
+        showProgress(true)
         (activity as? ViewInitCallback )?.show_bottombar(false)
         navController = findNavController()
-
+        setUpMarkdown()
+        setUpInputBox()
     }
 
     private fun setUpMarkdown() {
@@ -174,23 +184,24 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
             .build()
     }
 
-    private fun setUpRecyclerView() {
+    private fun setUpRecyclerView(coverAnimTime:Long= 6000L) {
 
         chatRecyclerView = binding.chatRecyclerview
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         chatRecyclerView.layoutManager = layoutManager
         val msgList : ArrayList<Message> = arrayListOf(
-            Message("Hello!, how can I help you ?", 0))
+            Message(getString(R.string.hello_how_can_i_help_you), 0))
 
 
         adapter = ChatAdapter(msgList,requireContext(),markwon,this,this)
         chatRecyclerView.adapter = adapter
+
         Handler(Looper.getMainLooper()).postDelayed({
             binding.chatRecyclerview.visible()
             binding.chatRecyclerview.animFadein(requireContext(),500)
             binding.cover.gone()
-        },6000)
-
+            showProgress(false)
+        },coverAnimTime)
 
         var checkScrollingUp = false
 
@@ -228,22 +239,35 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
     }
 
     private lateinit var navController: NavController
-
     private fun setUpViewClicks() {
 
 
+        //Back press
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object :OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 (activity as? ViewInitCallback )?.show_bottombar(true)
                 navController.navigate(R.id.action_chatFragment_to_homeFragment)
             }
-
         })
+
+        //Attach file
+
+        binding.inputBox.btnFileAttach.setOnClickThrottleBounceListener {
+            showSuggestion(true)
+        }
+
+        binding.suggestionBoxInclude.btnSendPdf.setOnClickThrottleBounceListener {
+
+        }
+
+
+        // Voice button
 
         binding.inputBox.btnVoice.setOnClickSingleTimeBounceListener {
 
         }
 
+        //Back button
         binding.actionbar.btnBack.setOnClickSingleTimeBounceListener {
 
             (activity as? ViewInitCallback )?.show_bottombar(true)
@@ -251,7 +275,7 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
 
         }
 
-
+        //Message button
         binding.inputBox.btnSend.setOnClickThrottleBounceListener(600) {
             val msg = binding.inputBox.editboxMessage.text.toString()
             addMessage(Message(msg, MessageTypes.MESSAGE_TYPE_USER))
@@ -259,9 +283,7 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
                 val configMsg = msg+" "+ApiEndpoints.CONFIGURATION
                 viewModel.getAnswer(configMsg)
             }
-
         }
-
 
     }
 
@@ -271,7 +293,7 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
             when (result){
                 is ServerResult.Failure -> {
                     adapter.showTyping(false)
-                    addMessage(Message("Hrrrr. some problems came between you and me :'( \n\n#### ${result.error}", MessageTypes.MESSAGE_TYPE_BOT))
+                    addMessage(Message("![Gif](https://images7.memedroid.com/images/UPLOADED184/55b9a61a6aa41.jpeg)", MessageTypes.MESSAGE_TYPE_BOT))
                 }
                 ServerResult.Progress -> {
                     adapter.showTyping(true)
@@ -286,14 +308,21 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
         }
     }
 
-//    private fun typing(show:Boolean){
-//        if (show){
-//            binding.actionbar.titleTv.text = "Typing..."
-//        }else{
-//            binding.actionbar.titleTv.text = "Vedika"
-//
-//        }
-//    }
+    private fun showProgress(show:Boolean){
+        if (show){
+            binding.actionbar.progress.visible()
+        }else{
+            binding.actionbar.progress.gone()
+
+        }
+    }
+    private fun showSuggestion(show:Boolean){
+        if (show){
+            binding.suggestionBoxInclude.suggestionBox.visible()
+        }else{
+            binding.suggestionBoxInclude.suggestionBox.gone()
+        }
+    }
 
     private fun addMessage(msg: Message){
         if (msg.msgType == MessageTypes.MESSAGE_TYPE_USER || msg.msgType == MessageTypes.MESSAGE_TYPE_BOT ){

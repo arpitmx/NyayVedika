@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.ncs.nyayvedika.Constants.TestingConfig
 import com.ncs.nyayvedika.R
 import com.ncs.nyayvedika.UI.MainHolder.MainActivity
 
@@ -13,9 +14,22 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-        },3000)
+        setUpDelay(TestingConfig.isTesting)
 
+
+
+
+    }
+
+    private fun setUpDelay(testing: Boolean) {
+        if (!testing){
+            Handler(Looper.getMainLooper()).postDelayed({
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            },3000)
+        }else {
+            Handler(Looper.getMainLooper()).postDelayed({
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            },0)
+        }
     }
 }

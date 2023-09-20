@@ -25,4 +25,5 @@ Invoke the following code inside the MainActivity.java file comments are added f
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="legal_analysis_of_a_pdf_file">Legal analysis of a PDF file</string>
     <string name="analyze_pdf">Analyze PDF</string>
+    <string name="hello_how_can_i_help_you">Hello!, how can I help you ?</string>
 </resources>

@@ -86,6 +86,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:indeterminate="true"
+        app:indicatorColor="@color/chat_progress_bg"
+        app:trackColor="@color/white"
+        />
 
     <View
         android:layout_width="match_parent"

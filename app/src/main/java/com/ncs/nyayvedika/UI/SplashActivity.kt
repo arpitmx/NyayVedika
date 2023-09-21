@@ -16,9 +16,6 @@ class SplashActivity : AppCompatActivity() {
 
         setUpDelay(TestingConfig.isTesting)
 
-
-
-
     }
 
     private fun setUpDelay(testing: Boolean) {

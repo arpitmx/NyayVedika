@@ -1,5 +1,6 @@
 package com.ncs.nyayvedika.UI.Chat
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -21,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.net.toFile
@@ -33,6 +35,7 @@ import androidx.navigation.NavGraphNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gkemon.XMLtoPDF.FileUtils.getPath
 import com.google.firebase.auth.FirebaseUser
 import com.ncs.nyayvedika.Constants.ApiEndpoints
 import com.ncs.nyayvedika.Constants.TestingConfig
@@ -48,6 +51,8 @@ import com.ncs.o2.Domain.Models.Message
 import com.ncs.o2.Domain.Models.ServerResult
 import com.ncs.o2.Domain.Utility.ExtensionsUtil.animFadeOut
 import com.ncs.o2.Domain.Utility.ExtensionsUtil.animFadein
+import com.ncs.o2.Domain.Utility.ExtensionsUtil.animSlideDown
+import com.ncs.o2.Domain.Utility.ExtensionsUtil.animSlideUp
 import com.ncs.o2.Domain.Utility.ExtensionsUtil.bounce
 import com.ncs.o2.Domain.Utility.ExtensionsUtil.gone
 import com.ncs.o2.Domain.Utility.ExtensionsUtil.setOnClickSingleTimeBounceListener
@@ -85,12 +90,11 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
     private lateinit var adapter : ChatAdapter
     private lateinit var chatRecyclerView : RecyclerView
     private lateinit var markwon : Markwon
+    private var suggestionBoxVisible: Boolean = false
     private val TAG = "ChatFragment"
     val elements : GlobalUtils.EasyElements by lazy {
         GlobalUtils.EasyElements(requireContext())
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -252,14 +256,33 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
 
         //Attach file
 
-        binding.inputBox.btnFileAttach.setOnClickThrottleBounceListener {
-            showSuggestion(true)
+        binding.inputBox.btnFileAttach.setOnClickThrottleBounceListener(0) {
+            if (suggestionBoxVisible){
+                showSuggestion(false,TYPE_DEFAULT)
+            }else {
+                showSuggestion(true,TYPE_DEFAULT)
+
+            }
         }
 
-        binding.suggestionBoxInclude.btnSendPdf.setOnClickThrottleBounceListener {
-
+        binding.btnSelectPdfFromStorage.setOnClickThrottleBounceListener {
+            showSuggestion(false,TYPE_DEFAULT)
+            Handler(Looper.getMainLooper()).postDelayed({
+                getPdfFromStorage()
+             },500)
         }
 
+        binding.crossBtnSelectPdf.setOnClickThrottleBounceListener(0) {
+            if(suggestionBoxVisible){
+                showSuggestion(false,TYPE_DEFAULT)
+            }
+        }
+
+        binding.inputBox.crossBtnSelectedPdf.setOnClickThrottleBounceListener(0) {
+            if(suggestionBoxVisible){
+                showSuggestion(false,TYPE_SELECT_PDF)
+            }
+        }
 
         // Voice button
 
@@ -287,13 +310,51 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
 
     }
 
+
+    private fun getPdfFromStorage() {
+        val intentPDF = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            type = "application/pdf"
+            addCategory(Intent.CATEGORY_OPENABLE)
+        }
+        startActivityForResult(
+            Intent.createChooser(intentPDF, "Open with"),
+            1001
+        )
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+
+                1001-> {
+                    data?.let {
+                        it.data?.also{uri ->
+                            val fileName : String =  uri.userInfo.toString()
+
+
+                            setSuggestionPDFbox(fileName)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setSuggestionPDFbox(fileName: String) {
+        showSuggestion(true, TYPE_SELECT_PDF)
+        binding.inputBox.tvSelectedPdfName.text = fileName
+    }
+
+
     private fun setLivedata() {
 
         viewModel.answerLiveData.observe(requireActivity()){result ->
             when (result){
                 is ServerResult.Failure -> {
                     adapter.showTyping(false)
-                    addMessage(Message("![Gif](https://images7.memedroid.com/images/UPLOADED184/55b9a61a6aa41.jpeg)", MessageTypes.MESSAGE_TYPE_BOT))
+                    addMessage(Message("Hrrrr. some problems came between you and me :'(  \n#### ${result.error}  \n<img src=\"https://media.giphy.com/media/eDKCK6x4dDTqsi7T5i/giphy-downsized.gif\" width=\"400\" height=\"400\">", MessageTypes.MESSAGE_TYPE_BOT))
                 }
                 ServerResult.Progress -> {
                     adapter.showTyping(true)
@@ -316,12 +377,61 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
 
         }
     }
-    private fun showSuggestion(show:Boolean){
-        if (show){
-            binding.suggestionBoxInclude.suggestionBox.visible()
-        }else{
-            binding.suggestionBoxInclude.suggestionBox.gone()
-        }
+
+    val TYPE_DEFAULT = "default"
+    val TYPE_SELECT_PDF = "pdf"
+    private fun showSuggestion(show:Boolean, type:String){
+
+
+
+        if (type == TYPE_SELECT_PDF){
+
+                binding.btnSelectPdfFromStorage.gone()
+                binding.suggestionBox.gone()
+
+            if (show){
+
+                    binding.inputBox.msgBox.gone()
+                    binding.inputBox.selectedPdfView.visible()
+
+                    binding.inputBox.btnFileAttach.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN)
+                    suggestionBoxVisible = true
+
+                }else{
+
+                binding.inputBox.msgBox.visible()
+                binding.inputBox.selectedPdfView.gone()
+
+                    binding.inputBox.btnFileAttach.setColorFilter(ContextCompat.getColor(requireContext(), R.color.account), PorterDuff.Mode.SRC_IN)
+                    suggestionBoxVisible = false
+
+
+                }}
+        else {
+
+            binding.inputBox.selectedPdfView.gone()
+            binding.inputBox.msgBox.visible()
+
+                if (show){
+
+                    binding.suggestionBox.visible()
+                    binding.btnSelectPdfFromStorage.visible()
+                    binding.inputBox.btnFileAttach.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorPrimary), PorterDuff.Mode.SRC_IN)
+                    suggestionBoxVisible = true
+
+
+                } else{
+
+                    binding.suggestionBox.gone()
+                    binding.btnSelectPdfFromStorage.gone()
+
+                    binding.inputBox.btnFileAttach.setColorFilter(ContextCompat.getColor(requireContext(), R.color.account), PorterDuff.Mode.SRC_IN)
+                    suggestionBoxVisible = false
+                }
+
+
+            }
+
     }
 
     private fun addMessage(msg: Message){
@@ -344,7 +454,6 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
     }
 
     private fun startOpeningAnim() {
-
 
         binding.vedikaTitle.animFadein(requireContext(),1500)
         binding.lottieProgressInclude.progressbarBlock.animFadein(requireContext(),3000)
@@ -390,8 +499,6 @@ class ChatFragment : Fragment(), ChatAdapter.OnClickCallback, OptionsBottomSheet
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
-
-
 
     ////////////////////// CALLBACKS ////////////////////////
 

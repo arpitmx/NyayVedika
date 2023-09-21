@@ -5,7 +5,6 @@
 Invoke the following code inside the MainActivity.java file comments are added for better understanding.</string>
     <string name="vedika">Vedika</string>
     <string name="sample">Please note that these are general provisions, and the specific punishment for bribery may vary based on the nature of the offense and other factors. Additionally, the legal system can evolve, so it\'s advisable to consult the latest legal sources or seek legal counsel for the most up-to-date information on bribery punishments in India.</string>
-    <string name="message">Message</string>
     <string name="app_name_main">NyayVedika ✦</string>
     <string name="labour_laws">Labour Laws</string>
     <string name="property_laws">Property Laws</string>
@@ -15,15 +14,12 @@ Invoke the following code inside the MainActivity.java file comments are added f
     <string name="chat">Chat</string>
     <string name="history">History</string>
     <string name="legal_ndocuments">Legal\nDocuments</string>
-    <string name="legal_nnews">Legal\nNews</string>
     <string name="legal_nconsultation">Legal\nConsultation</string>
     <string name="legal_nadvice">Legal\nAdvice</string>
     <string name="search_related_to_law">Search related to law...</string>
     <string name="profile">Profile</string>
     <string name="search_chats">Search chats...</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="legal_analysis_of_a_pdf_file">Legal analysis of a PDF file</string>
     <string name="analyze_pdf">Analyze PDF</string>
     <string name="hello_how_can_i_help_you">Hello!, how can I help you ?</string>
 </resources>

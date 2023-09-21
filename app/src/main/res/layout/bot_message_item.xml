@@ -92,6 +92,7 @@
 
 
 
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_message"
             android:layout_width="wrap_content"
@@ -101,11 +102,12 @@
             android:text="@string/test_string"
             android:textAlignment="textStart"
             android:textColor="@color/pureblack"
-            android:textSize="15dp"
+            android:textSize="@dimen/chat_msg_text_size"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
 
             />
-
 
         <TextView
             android:id="@+id/btn_copy"
@@ -116,11 +118,16 @@
             android:background="@drawable/curvedbggraybg_umssg"
             android:layout_gravity="end"
             android:padding="5dp"
+            android:visibility="visible"
             android:src="@drawable/document_normal"
             android:tint="@color/card_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
 
 
 

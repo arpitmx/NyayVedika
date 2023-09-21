@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(), ChatFragment.ViewInitCallback {
 
     private fun setUpBottomNavigation(testing: Boolean= false) {
 
-
         val navController = findNavController(R.id.nav_host_fragment)
         val bottomNav = binding.bottomNav
         bottomNav.setupWithNavController(navController)

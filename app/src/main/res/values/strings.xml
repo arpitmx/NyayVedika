@@ -22,4 +22,5 @@ Invoke the following code inside the MainActivity.java file comments are added f
     <!-- TODO: Remove or change this placeholder text -->
     <string name="analyze_pdf">Analyze PDF</string>
     <string name="hello_how_can_i_help_you">Hello!, how can I help you ?</string>
+    <string name="selected_pdf">Selected.pdf</string>
 </resources>

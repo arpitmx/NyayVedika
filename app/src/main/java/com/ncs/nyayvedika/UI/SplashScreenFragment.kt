@@ -1,11 +1,10 @@
 package com.ncs.nyayvedika.UI
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ncs.nyayvedika.R
+import androidx.fragment.app.Fragment
 import com.ncs.nyayvedika.databinding.FragmentSplashscreenBinding
 
 
@@ -21,7 +20,7 @@ class SplashScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= FragmentSplashscreenBinding.inflate(inflater,container,false)
+        binding = FragmentSplashscreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
